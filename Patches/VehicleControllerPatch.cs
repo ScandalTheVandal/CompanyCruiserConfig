@@ -1,78 +1,77 @@
 using HarmonyLib;
 
-namespace CompanyCruiserConfig.Patches
+namespace CompanyCruiserConfig.Patches;
+
+[HarmonyPatch(typeof(VehicleController))]
+internal class VehicleControllerPatch
 {
-    [HarmonyPatch(typeof(VehicleController))]
-    internal class VehicleControllerPatch
+    [HarmonyPatch(nameof(VehicleController.Start))]
+    [HarmonyPrefix]
+    private static void StartPrefix(VehicleController __instance)
     {
-        [HarmonyPatch("Start")]
-        [HarmonyPrefix]
-        private static void StartPrefix(VehicleController __instance)
-        {
-            __instance.baseCarHP = CompanyCruiserConfig.baseCarHP;
-        }
+        __instance.baseCarHP = CompanyCruiserConfig.baseCarHP.Value;
+    }
 
-        [HarmonyPatch("Start")]
-        [HarmonyPostfix]
-        private static void StartPostfix(VehicleController __instance) 
-        {
-            __instance.brakeSpeed = CompanyCruiserConfig.brakeSpeed;
-            __instance.carAcceleration = CompanyCruiserConfig.carAcceleration;
-            __instance.carFragility = CompanyCruiserConfig.carFragility;
-            __instance.carHitPlayerForceFraction = CompanyCruiserConfig.carHitPlayerForceFraction;
-            __instance.carMaxSpeed = CompanyCruiserConfig.carMaxSpeed;
-            __instance.carReactToPlayerHitMultiplier = CompanyCruiserConfig.carReactToPlayerHitMultiplier;
-            __instance.engineIntensityPercentage = CompanyCruiserConfig.engineIntensityPercentage;
-            __instance.EngineTorque = CompanyCruiserConfig.engineTorque;
-            __instance.idleSpeed = CompanyCruiserConfig.idleSpeed;
-            __instance.jumpForce = CompanyCruiserConfig.jumpForce;
-            __instance.MaxEngineRPM = CompanyCruiserConfig.maxEngineRPM;
-            __instance.maximumBumpForce = CompanyCruiserConfig.maximumBumpForce;
-            __instance.mediumBumpForce = CompanyCruiserConfig.mediumBumpForce;
-            __instance.MinEngineRPM = CompanyCruiserConfig.minEngineRPM;
-            __instance.minimalBumpForce = CompanyCruiserConfig.minimalBumpForce;
-            __instance.movingAverageLength = CompanyCruiserConfig.movingAverageLength;
-            __instance.pushForceMultiplier = CompanyCruiserConfig.pushForceMultiplier;
-            __instance.pushVerticalOffsetAmount = CompanyCruiserConfig.pushVerticalOffsetAmount;
-            __instance.radioSignalDecreaseThreshold = CompanyCruiserConfig.radioSignalDecreaseThreshold;
-            __instance.radioSignalQuality = CompanyCruiserConfig.radioSignalQuality;
-            __instance.radioSignalTurbulence = CompanyCruiserConfig.radioSignalTurbulence;
-            __instance.speed = CompanyCruiserConfig.speed;
-            __instance.springForce = CompanyCruiserConfig.springForce;
-            __instance.stability = CompanyCruiserConfig.stability;
-            __instance.steeringWheelTurnSpeed = CompanyCruiserConfig.steeringWheelTurnSpeed;
-            __instance.syncRotationSpeed = CompanyCruiserConfig.syncRotationSpeed;
-            __instance.syncSpeedMultiplier = CompanyCruiserConfig.syncSpeedMultiplier;
-            __instance.torqueForce = CompanyCruiserConfig.torqueForce;
-            __instance.turboBoostForce = CompanyCruiserConfig.turboBoostForce;
-            __instance.turboBoostUpwardForce = CompanyCruiserConfig.turboBoostUpwardForce;
+    [HarmonyPatch(nameof(VehicleController.Start))]
+    [HarmonyPostfix]
+    private static void StartPostfix(VehicleController __instance) 
+    {
+        __instance.brakeSpeed = CompanyCruiserConfig.brakeSpeed.Value;
+        __instance.carAcceleration = CompanyCruiserConfig.carAcceleration.Value;
+        __instance.carFragility = CompanyCruiserConfig.carFragility.Value;
+        __instance.carHitPlayerForceFraction = CompanyCruiserConfig.carHitPlayerForceFraction.Value;
+        __instance.carMaxSpeed = CompanyCruiserConfig.carMaxSpeed.Value;
+        __instance.carReactToPlayerHitMultiplier = CompanyCruiserConfig.carReactToPlayerHitMultiplier.Value;
+        __instance.engineIntensityPercentage = CompanyCruiserConfig.engineIntensityPercentage.Value;
+        __instance.EngineTorque = CompanyCruiserConfig.engineTorque.Value;
+        __instance.idleSpeed = CompanyCruiserConfig.idleSpeed.Value;
+        __instance.jumpForce = CompanyCruiserConfig.jumpForce.Value;
+        __instance.MaxEngineRPM = CompanyCruiserConfig.maxEngineRPM.Value;
+        __instance.maximumBumpForce = CompanyCruiserConfig.maximumBumpForce.Value;
+        __instance.mediumBumpForce = CompanyCruiserConfig.mediumBumpForce.Value;
+        __instance.MinEngineRPM = CompanyCruiserConfig.minEngineRPM.Value;
+        __instance.minimalBumpForce = CompanyCruiserConfig.minimalBumpForce.Value;
+        __instance.movingAverageLength = CompanyCruiserConfig.movingAverageLength.Value;
+        __instance.pushForceMultiplier = CompanyCruiserConfig.pushForceMultiplier.Value;
+        __instance.pushVerticalOffsetAmount = CompanyCruiserConfig.pushVerticalOffsetAmount.Value;
+        __instance.radioSignalDecreaseThreshold = CompanyCruiserConfig.radioSignalDecreaseThreshold.Value;
+        __instance.radioSignalQuality = CompanyCruiserConfig.radioSignalQuality.Value;
+        __instance.radioSignalTurbulence = CompanyCruiserConfig.radioSignalTurbulence.Value;
+        __instance.speed = CompanyCruiserConfig.speed.Value;
+        __instance.springForce = CompanyCruiserConfig.springForce.Value;
+        __instance.stability = CompanyCruiserConfig.stability.Value;
+        __instance.steeringWheelTurnSpeed = CompanyCruiserConfig.steeringWheelTurnSpeed.Value;
+        __instance.syncRotationSpeed = CompanyCruiserConfig.syncRotationSpeed.Value;
+        __instance.syncSpeedMultiplier = CompanyCruiserConfig.syncSpeedMultiplier.Value;
+        __instance.torqueForce = CompanyCruiserConfig.torqueForce.Value;
+        __instance.turboBoostForce = CompanyCruiserConfig.turboBoostForce.Value;
+        __instance.turboBoostUpwardForce = CompanyCruiserConfig.turboBoostUpwardForce.Value;
 
-            if (CompanyCruiserConfig.editRigidbody)
-            {
-                __instance.mainRigidbody.angularDrag = CompanyCruiserConfig.angularDrag;
-                __instance.mainRigidbody.drag = CompanyCruiserConfig.drag;
-                __instance.mainRigidbody.mass = CompanyCruiserConfig.mass;
-                __instance.mainRigidbody.maxAngularVelocity = CompanyCruiserConfig.maxAngularVelocity;
-                __instance.mainRigidbody.maxDepenetrationVelocity = CompanyCruiserConfig.maxDepenetrationVelocity;
-                __instance.mainRigidbody.maxLinearVelocity = CompanyCruiserConfig.maxLinearVelocity;
-                __instance.mainRigidbody.sleepThreshold = CompanyCruiserConfig.sleepThreshold;
-                __instance.mainRigidbody.solverIterations = CompanyCruiserConfig.solverIterations;
-                __instance.mainRigidbody.solverVelocityIterations = CompanyCruiserConfig.solverVelocityIterations;
-            }
-        }
-
-        [HarmonyPatch("PushTruckWithArms")]
-        [HarmonyPrefix]
-        private static void PushTruckWithForcePatch(VehicleController __instance)
+        if (CompanyCruiserConfig.editRigidbody.Value)
         {
-            __instance.pushForceMultiplier = CompanyCruiserConfig.pushForceMultiplier;
+            __instance.mainRigidbody.angularDrag = CompanyCruiserConfig.angularDrag.Value;
+            __instance.mainRigidbody.drag = CompanyCruiserConfig.drag.Value;
+            __instance.mainRigidbody.mass = CompanyCruiserConfig.mass.Value;
+            __instance.mainRigidbody.maxAngularVelocity = CompanyCruiserConfig.maxAngularVelocity.Value;
+            __instance.mainRigidbody.maxDepenetrationVelocity = CompanyCruiserConfig.maxDepenetrationVelocity.Value;
+            __instance.mainRigidbody.maxLinearVelocity = CompanyCruiserConfig.maxLinearVelocity.Value;
+            __instance.mainRigidbody.sleepThreshold = CompanyCruiserConfig.sleepThreshold.Value;
+            __instance.mainRigidbody.solverIterations = CompanyCruiserConfig.solverIterations.Value;
+            __instance.mainRigidbody.solverVelocityIterations = CompanyCruiserConfig.solverVelocityIterations.Value;
         }
+    }
 
-        [HarmonyPatch("PushTruckClientRpc")]
-        [HarmonyPrefix]
-        private static void PushTruckClientRpcPatch(VehicleController __instance)
-        {
-            __instance.pushForceMultiplier = CompanyCruiserConfig.pushForceMultiplier;
-        }
+    [HarmonyPatch(nameof(VehicleController.PushTruckWithArms))]
+    [HarmonyPrefix]
+    private static void PushTruckWithForcePatch(VehicleController __instance)
+    {
+        __instance.pushForceMultiplier = CompanyCruiserConfig.pushForceMultiplier.Value;
+    }
+
+    [HarmonyPatch(nameof(VehicleController.PushTruckClientRpc))]
+    [HarmonyPrefix]
+    private static void PushTruckClientRpcPatch(VehicleController __instance)
+    {
+        __instance.pushForceMultiplier = CompanyCruiserConfig.pushForceMultiplier.Value;
     }
 }

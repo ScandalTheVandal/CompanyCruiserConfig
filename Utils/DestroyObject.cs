@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-namespace CompanyCruiserConfig.Utils
+namespace CompanyCruiserConfig.Utils;
+
+internal class DestroyObject : MonoBehaviour
 {
-    internal class DestroyObject : MonoBehaviour
+    void Awake()
     {
-        void Awake()
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

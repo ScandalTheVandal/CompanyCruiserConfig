@@ -5,6 +5,8 @@ using System.Reflection;
 using Unity.Netcode;
 using UnityEngine;
 
+namespace CompanyCruiserConfig.Patches;
+
 [HarmonyPatch(typeof(NetworkManager))]
 internal static class RegisterNetworkPrefabPatch
 {

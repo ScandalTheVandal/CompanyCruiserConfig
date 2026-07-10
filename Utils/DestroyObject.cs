@@ -2,7 +2,7 @@
 
 namespace CompanyCruiserConfig.Utils;
 
-internal class DestroyObject : MonoBehaviour
+public class DestroyObject : MonoBehaviour
 {
     void Awake()
     {

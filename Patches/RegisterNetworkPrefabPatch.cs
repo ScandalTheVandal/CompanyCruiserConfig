@@ -8,13 +8,11 @@ using UnityEngine;
 namespace CompanyCruiserConfig.Patches;
 
 [HarmonyPatch(typeof(NetworkManager))]
-internal static class RegisterNetworkPrefabPatch
+public static class RegisterNetworkPrefabPatch
 {
-    private static readonly string MOD_GUID = MyPluginInfo.PLUGIN_GUID;
-
     [HarmonyPatch(nameof(NetworkManager.SetSingleton))]
     [HarmonyPostfix]
-    private static void RegisterPrefab()
+    public static void RegisterPrefab()
     {
         var prefab = new GameObject(MOD_GUID + " Prefab");
         prefab.hideFlags |= HideFlags.HideAndDontSave;

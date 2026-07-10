@@ -87,7 +87,7 @@ public class CompanyCruiserConfig : BaseUnityPlugin
         despawnInVoid = Config.Bind("General", "Despawn In Void", true, "Should any VehicleController object that goes below Despawn Depth Threshold be despawned? This check runs in FixedUpdate()");
         despawnInSky = Config.Bind("General", "Despawn In Sky", true, "Should any VehicleController object that goes above Despawn Height Threshold be despawned? This check runs in FixedUpdate()");
         despawnDepthThreshold = Config.Bind("General", "Despawn Depth Threshold", -500f, "Threshold where any VehicleController object below this height will be despawned.");
-        despawnHeightThreshold = Config.Bind("Generael", "Despawn Height Threshold", 9999f, "Threshold where any VehicleController object above this height will be despawned.");
+        despawnHeightThreshold = Config.Bind("General", "Despawn Height Threshold", 9999f, "Threshold where any VehicleController object above this height will be despawned.");
         editEnemyCollisionDamage = Config.Bind("General", "Edit Enemy Collision Damage", false, "Should configuration of enemy collision damage values be enabled?");
 
         // vehiclecontroller
@@ -155,7 +155,7 @@ public class CompanyCruiserConfig : BaseUnityPlugin
         }
         if (despawnInSky.Value)
         {
-            Harmony.PatchAll(typeof(VehicleControllerDestroyCruiserDepthPatch));
+            Harmony.PatchAll(typeof(VehicleControllerDestroyCruiserHeightPatch));
         }
 
         if (editEnemyCollisionDamage.Value)

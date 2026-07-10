@@ -27,7 +27,7 @@ public static class VehicleControllerPatch
         //__instance.brakeSpeed = CompanyCruiserConfig.brakeSpeed.Value; //unused
         __instance.carAcceleration = CompanyCruiserConfig.carAcceleration.Value;
         //__instance.carFragility = CompanyCruiserConfig.carFragility.Value; //unused
-        __instance.carHitPlayerForceFraction = CompanyCruiserConfig.carHitPlayerForceFraction.Value;
+        //__instance.carHitPlayerForceFraction = CompanyCruiserConfig.carHitPlayerForceFraction.Value; //unused
         //__instance.carMaxSpeed = CompanyCruiserConfig.carMaxSpeed.Value; //unused
         __instance.carReactToPlayerHitMultiplier = CompanyCruiserConfig.carReactToPlayerHitMultiplier.Value;
         //__instance.engineIntensityPercentage = CompanyCruiserConfig.engineIntensityPercentage.Value; //no point changing this, this is for audio effects

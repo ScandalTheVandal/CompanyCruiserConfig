@@ -9,13 +9,21 @@ public static class VehicleControllerPatch
     [HarmonyPrefix]
     private static void Start_Prefix(VehicleController __instance)
     {
+        if (__instance.vehicleID != 0)
+        {
+            return;
+        }
         __instance.baseCarHP = CompanyCruiserConfig.baseCarHP.Value;
     }
 
     [HarmonyPatch(nameof(VehicleController.Start))]
     [HarmonyPostfix]
-    private static void StartPostfix(VehicleController __instance) 
+    private static void Start_Postfix(VehicleController __instance) 
     {
+        if (__instance.vehicleID != 0)
+        {
+            return;
+        }        
         //__instance.brakeSpeed = CompanyCruiserConfig.brakeSpeed.Value; //unused
         __instance.carAcceleration = CompanyCruiserConfig.carAcceleration.Value;
         //__instance.carFragility = CompanyCruiserConfig.carFragility.Value; //unused

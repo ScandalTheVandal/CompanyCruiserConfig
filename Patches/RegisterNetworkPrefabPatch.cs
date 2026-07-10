@@ -14,12 +14,12 @@ public static class RegisterNetworkPrefabPatch
     [HarmonyPostfix]
     public static void RegisterPrefab()
     {
-        var prefab = new GameObject(MOD_GUID + " Prefab");
+        var prefab = new GameObject(MyPluginInfo.PLUGIN_GUID + " Prefab");
         prefab.hideFlags |= HideFlags.HideAndDontSave;
         Object.DontDestroyOnLoad(prefab);
         var networkObject = prefab.AddComponent<NetworkObject>();
         var fieldInfo = typeof(NetworkObject).GetField("GlobalObjectIdHash", BindingFlags.Instance | BindingFlags.NonPublic);
-        fieldInfo!.SetValue(networkObject, GetHash(MOD_GUID));
+        fieldInfo!.SetValue(networkObject, GetHash(MyPluginInfo.PLUGIN_GUID));
 
         NetworkManager.Singleton.PrefabHandler.AddNetworkPrefab(prefab);
         return;

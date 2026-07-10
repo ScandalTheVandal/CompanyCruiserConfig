@@ -12,7 +12,7 @@ public static class RegisterNetworkPrefabPatch
 {
     [HarmonyPatch(nameof(NetworkManager.SetSingleton))]
     [HarmonyPostfix]
-    public static void RegisterPrefab()
+    public static void RegisterNetworkPrefab()
     {
         var prefab = new GameObject(MyPluginInfo.PLUGIN_GUID + " Prefab");
         prefab.hideFlags |= HideFlags.HideAndDontSave;

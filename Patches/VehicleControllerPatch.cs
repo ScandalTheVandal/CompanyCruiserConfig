@@ -5,20 +5,34 @@ namespace CompanyCruiserConfig.Patches;
 [HarmonyPatch(typeof(VehicleController))]
 public static class VehicleControllerPatch
 {
-    [HarmonyPatch(nameof(VehicleController.Start))]
-    [HarmonyPrefix]
-    private static void Start_Prefix(VehicleController __instance)
+    [HarmonyPatch(nameof(VehicleController.OnDestroy))]
+    [HarmonyPostfix]
+    public static void OnDestroy_Postfix(VehicleController __instance)
     {
         if (__instance.vehicleID != 0)
         {
             return;
         }
+        References.vehicleControllers.Remove(__instance);
+    }
+    
+    [HarmonyPatch(nameof(VehicleController.Start))]
+    [HarmonyPrefix]
+    public static void Start_Prefix(VehicleController __instance)
+    {
+        if (__instance.vehicleID != 0)
+        {
+            return;
+        }
+        References.vehicleControllers.Add(__instance); // may move to awake? but need to add another check for my v55 cruiser mod. too lazy to do that right now.
+        // anyways the idea with the hashset is multi-cruiser support. while i dont endorse this mod because of the problems it creates, i will try to best respect your wishes.
+        // the hashset exists so we can apply config changes at runtime by doing a foreach through the hashset.
         __instance.baseCarHP = CompanyCruiserConfig.baseCarHP.Value;
     }
 
     [HarmonyPatch(nameof(VehicleController.Start))]
     [HarmonyPostfix]
-    private static void Start_Postfix(VehicleController __instance) 
+    public static void Start_Postfix(VehicleController __instance) 
     {
         if (__instance.vehicleID != 0)
         {

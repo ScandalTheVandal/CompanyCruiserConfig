@@ -4,11 +4,11 @@ using HarmonyLib;
 namespace CompanyCruiserConfig.Patches;
 
 [HarmonyPatch(typeof(VehicleController))]
-internal class VehicleControllerDestroyCruiserDepthPatch
+public static class VehicleControllerDestroyCruiserDepthPatch
 {
     [HarmonyPatch(nameof(VehicleController.FixedUpdate))]
     [HarmonyPostfix]
-    private static void FixedUpdate_Postfix(VehicleController __instance)
+    public static void FixedUpdate_Postfix(VehicleController __instance)
     {
         if (__instance.transform.position.y < CompanyCruiserConfig.despawnDepthThreshold.Value)
         {

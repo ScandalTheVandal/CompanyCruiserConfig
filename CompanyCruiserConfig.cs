@@ -23,11 +23,11 @@ public class CompanyCruiserConfig : BaseUnityPlugin
 
     // vehiclecontroller
     public static ConfigEntry<int> baseCarHP = null!; // 30
-    public static ConfigEntry<float> brakeSpeed = null!; // 500
+    //public static ConfigEntry<float> brakeSpeed = null!; // 500
     public static ConfigEntry<float> carAcceleration = null!; // 250
     public static ConfigEntry<float> carFragility = null!; // 1
-    public static ConfigEntry<float> carHitPlayerForceFraction = null!; // 30
-    public static ConfigEntry<float> carMaxSpeed = null!; // 600
+    //public static ConfigEntry<float> carHitPlayerForceFraction = null!; // 30
+    //public static ConfigEntry<float> carMaxSpeed = null!; // 600
     public static ConfigEntry<float> carReactToPlayerHitMultiplier = null!; // 2850
     public static ConfigEntry<float> engineIntensityPercentage = null!; // 180
     public static ConfigEntry<float> engineTorque = null!; // 1100

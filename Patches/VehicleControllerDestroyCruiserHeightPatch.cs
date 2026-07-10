@@ -4,7 +4,7 @@ using HarmonyLib;
 namespace CompanyCruiserConfig.Patches;
 
 [HarmonyPatch(typeof(VehicleController))]
-internal class VehicleControllerDestroyCruiserHeightPatch
+public static class VehicleControllerDestroyCruiserHeightPatch
 {
     [HarmonyPatch(nameof(VehicleController.FixedUpdate))]
     [HarmonyPostfix]
